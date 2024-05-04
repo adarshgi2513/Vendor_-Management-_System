@@ -171,7 +171,9 @@ class VendorPerformanceAPIView(APIView):
 
 
 
+#THIS is the user AUTHENTICATION SECTION
 
+#this class to help to find  the user(admin/superuser)
 class MySecuredView(APIView): 
     def get(self, request, format=None):
         content = {
@@ -179,7 +181,9 @@ class MySecuredView(APIView):
             'user': str(request.user),  # User object associated with the token
         }
         return Response(content)
-    
+ #This is the token genarating class the class work through a simple user authentication 
+#enter the user crendtial detias?(username,password)THEN generate token 
+#Access all class to use through token(i am tested the whole funtions using POSTMAN )
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data, context={'request': request})
